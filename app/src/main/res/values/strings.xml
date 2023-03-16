@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="equation">ax^2+bx+c=0</string>
+    <string name="senior_coefficient_text">a=</string>
+    <string name="average_coefficient_text">b=</string>
+    <string name="free_member_text">c=</string>
+    <string name="decision_button_text">Решить уравнение</string>
+    <string name="x1_text">x1=</string>
+    <string name="x1">x1=%1$s</string>
+    <string name="x2_text">x2=</string>
+    <string name="x2">x2=%1$s</string>
+    <string name="discriminant">D=%1$s</string>
 </resources>
