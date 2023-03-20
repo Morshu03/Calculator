@@ -10,4 +10,7 @@
     <string name="x2_text">x2=</string>
     <string name="x2">x2=%1$s</string>
     <string name="discriminant">D=%1$s</string>
+    <string name="home">Home</string>
+    <string name="invalid_fragment">Second Fragment</string>
+    <string name="second_fragment_text">THIS IS SECOND FRAGMENT</string>
 </resources>

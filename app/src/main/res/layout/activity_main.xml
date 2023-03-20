@@ -5,126 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/activity_main">
 
-    <TextView
-        android:id="@+id/equation"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation" />
+
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="@string/equation"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/senior_coefficient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/senior_coefficient_text"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@id/editText_senior_coefficient"
-        app:layout_constraintStart_toStartOf="@id/equation"
-        app:layout_constraintTop_toBottomOf="@id/equation" />
-
-    <EditText
-        android:id="@+id/editText_senior_coefficient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@id/senior_coefficient"
-        app:layout_constraintTop_toBottomOf="@id/equation" />
-
-    <TextView
-        android:id="@+id/average_coefficient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/average_coefficient_text"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@id/senior_coefficient"
-        app:layout_constraintTop_toBottomOf="@id/senior_coefficient" />
-
-    <EditText
-        android:id="@+id/editText_average_coefficient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@id/average_coefficient"
-        app:layout_constraintTop_toBottomOf="@id/editText_senior_coefficient" />
-
-    <TextView
-        android:id="@+id/free_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/free_member_text"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@id/average_coefficient"
-        app:layout_constraintTop_toBottomOf="@id/average_coefficient" />
-
-    <EditText
-        android:id="@+id/editText_free_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@id/editText_average_coefficient"
-        app:layout_constraintTop_toBottomOf="@id/editText_average_coefficient" />
-
-    <Button
-        android:id="@+id/decision_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/arlekin"
-        android:text="@string/decision_button_text"
-        android:textAllCaps="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_free_member" />
-
-    <TextView
-        android:id="@+id/x_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/x1_text"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@id/decision_button"
-        app:layout_constraintTop_toBottomOf="@id/decision_button" />
-
-    <TextView
-        android:id="@+id/x_two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/x2_text"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@id/x_one"
-        app:layout_constraintTop_toBottomOf="@id/x_one" />
-
-    <TextView
-        android:id="@+id/discriminant_less_zero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/x_two" />
 </androidx.constraintlayout.widget.ConstraintLayout>
