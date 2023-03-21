@@ -2,10 +2,10 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/home"
-        android:id="@+id/home_item"
+    <item android:title="@string/calculator"
+        android:id="@+id/calculatorFragment"
         android:icon="@drawable/baseline_home_24"/>
-    <item android:title="@string/invalid_fragment"
-        android:id="@+id/second_fragment_item"
+    <item android:title="@string/second_fragment"
+        android:id="@+id/secondFragment"
         android:icon="@drawable/baseline_sports_bar_24"/>
 </menu>

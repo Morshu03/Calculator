@@ -1,4 +1,4 @@
-package com.example.calculator.model
+package com.example.calculator.presentation.calculator.model
 
 sealed class UiState {
     object Default : UiState()

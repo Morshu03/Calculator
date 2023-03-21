@@ -1,9 +1,9 @@
-package com.example.calculator
+package com.example.calculator.presentation.calculator
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.calculator.model.UiState
+import com.example.calculator.presentation.calculator.model.UiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

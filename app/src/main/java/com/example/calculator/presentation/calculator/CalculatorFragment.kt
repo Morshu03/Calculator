@@ -1,4 +1,4 @@
-package com.example.calculator
+package com.example.calculator.presentation.calculator
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,21 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.example.calculator.databinding.FragmentHomeBinding
-import com.example.calculator.model.UiState
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.example.calculator.R
+import com.example.calculator.databinding.FragmentCalculatorBinding
+import com.example.calculator.presentation.calculator.model.UiState
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class Home : Fragment() {
+class CalculatorFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentCalculatorBinding? = null
     private val binding get() = _binding!!
 
-    @SuppressLint("FragmentLiveDataObserve")
+    @SuppressLint("FragmentLiveDataObserve", "UseRequireInsteadOfGet")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
 
         val viewModel: CalculatorViewModel by viewModels()
 
