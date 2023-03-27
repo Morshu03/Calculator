@@ -8,15 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.example.calculator.R
 import com.example.calculator.databinding.FragmentCalculatorBinding
+import dagger.hilt.android.AndroidEntryPoint
 import com.example.calculator.presentation.calculator.model.UiState
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
+@AndroidEntryPoint
 class CalculatorFragment : Fragment() {
 
     private var _binding: FragmentCalculatorBinding? = null

@@ -3,13 +3,16 @@ package com.example.calculator.presentation.calculator
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.calculator.presentation.calculator.model.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.calculator.presentation.calculator.model.UiState
+import com.example.calculator.data.repository.HumorRepository
+import javax.inject.Inject
 import kotlin.math.sqrt
-
-class CalculatorViewModel : ViewModel() {
+@HiltViewModel
+class CalculatorViewModel @Inject constructor(val repository: HumorRepository) : ViewModel() {
 
     val uiStateLiveData: MutableLiveData<UiState> = MutableLiveData(UiState.Default)
 
