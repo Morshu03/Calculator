@@ -17,6 +17,7 @@ class CalculatorFragment : Fragment() {
 
     private var _binding: FragmentCalculatorBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: CalculatorViewModel by viewModels()
 
     @SuppressLint("FragmentLiveDataObserve", "UseRequireInsteadOfGet")
     override fun onCreateView(
@@ -25,8 +26,6 @@ class CalculatorFragment : Fragment() {
     ): View {
 
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
-
-        val viewModel: CalculatorViewModel by viewModels()
 
         viewModel.uiStateLiveData.observe(this) {
             when (it) {

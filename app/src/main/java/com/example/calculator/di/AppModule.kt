@@ -1,6 +1,6 @@
 package com.example.calculator.di
 
-import com.example.calculator.data.api.HumorService
+import com.example.calculator.data.api.DogService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -11,19 +11,23 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    const val BASE_URL = "https://api.humorapi.com "
+    const val BASE_URL = "https://dog.ceo"
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient = run {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
             .build()
     }
@@ -41,6 +45,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideHumorService(retrofit: Retrofit): HumorService = retrofit.create(HumorService::class.java)
+    fun provideHumorService(retrofit: Retrofit): DogService = retrofit.create(DogService::class.java)
 
 }

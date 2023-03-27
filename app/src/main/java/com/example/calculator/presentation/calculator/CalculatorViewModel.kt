@@ -8,11 +8,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.calculator.presentation.calculator.model.UiState
-import com.example.calculator.data.repository.HumorRepository
+import com.example.calculator.data.repository.DogRepository
 import javax.inject.Inject
 import kotlin.math.sqrt
 @HiltViewModel
-class CalculatorViewModel @Inject constructor(val repository: HumorRepository) : ViewModel() {
+class CalculatorViewModel @Inject constructor(val repository: DogRepository) : ViewModel() {
 
     val uiStateLiveData: MutableLiveData<UiState> = MutableLiveData(UiState.Default)
 

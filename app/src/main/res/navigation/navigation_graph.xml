@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_calculator" />
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.calculator.presentation.second.MemeFragment"
+        android:name="com.example.calculator.presentation.second.DogFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
     </fragment>
