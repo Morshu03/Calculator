@@ -13,4 +13,6 @@
     <string name="calculator">Calculator</string>
     <string name="second_fragment">Second Fragment</string>
     <string name="second_fragment_text">THIS IS SECOND FRAGMENT</string>
+    <string name="label">Breeds</string>
+    <string name="request">Запрос</string>
 </resources>

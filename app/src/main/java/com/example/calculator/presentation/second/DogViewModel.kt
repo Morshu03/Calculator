@@ -16,6 +16,7 @@ class DogViewModel @Inject constructor(private val repository: DogRepository) : 
 
     val dogsUiStateLiveData: MutableLiveData<DogUiState> = MutableLiveData()
 
+
     fun fetchDogs() {
         viewModelScope.launch() {
             when (val response = repository.getRandomDog()) {
@@ -27,7 +28,32 @@ class DogViewModel @Inject constructor(private val repository: DogRepository) : 
                     )
                 }
                 is RequestResult.Error -> {
-                    dogsUiStateLiveData.postValue(DogUiState.Error)
+                    dogsUiStateLiveData.postValue(
+                        DogUiState.Error(
+                            massage = response.message ?: ""
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun fetchDogsByBreed(breed: String) {
+        viewModelScope.launch {
+            when (val response = repository.getDogByBreed(breed)) {
+                is RequestResult.Success -> {
+                    dogsUiStateLiveData.postValue(
+                        DogUiState.Success(
+                            imgUrl = response.data?.message ?: ""
+                        )
+                    )
+                }
+                is RequestResult.Error -> {
+                    dogsUiStateLiveData.postValue(
+                        DogUiState.Error(
+                            massage = response.message ?: ""
+                        )
+                    )
                 }
             }
         }

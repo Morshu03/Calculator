@@ -27,9 +27,20 @@ class DogRepository @Inject constructor(private val dogService: DogService) {
         }
     }
 
-    companion object {
-        private const val API_KEY = "30a7cb9b1d0a4e2fb6a615a1ef43d3b2"
+    suspend fun getDogByBreed(breed: String): RequestResult<RandomDogResponse?> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val breedsResult = dogService.getDogByBreed(breed)
+                if (breedsResult.isSuccessful) {
+                    breedsResult.body().let {
+                        return@withContext RequestResult.Success(it)
+                    }
+                }
+                return@withContext RequestResult.Error(breedsResult.message())
+            } catch (e: java.lang.Exception) {
+                return@withContext RequestResult.Error(e.message)
+            }
+        }
     }
-
 
 }

@@ -19,6 +19,7 @@ import javax.inject.Singleton
 object AppModule {
 
     const val BASE_URL = "https://dog.ceo"
+
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient = run {
@@ -45,6 +46,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideHumorService(retrofit: Retrofit): DogService = retrofit.create(DogService::class.java)
+    fun provideHumorService(retrofit: Retrofit): DogService =
+        retrofit.create(DogService::class.java)
 
 }

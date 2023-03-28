@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.calculator.R
+import com.example.calculator.data.api.DogService
 import com.example.calculator.databinding.FragmentSecondBinding
 import com.example.calculator.presentation.calculator.model.DogUiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,10 +30,10 @@ class DogFragment : Fragment() {
     ): View {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
 
-        viewModel.dogsUiStateLiveData.observe(this){
-            when (it){
-                DogUiState.Error -> {
-                    showToast("Ошибка")
+        viewModel.dogsUiStateLiveData.observe(this) {
+            when (it) {
+                is DogUiState.Error -> {
+                    showToast(it.massage)
                 }
                 is DogUiState.Success -> {
                     Glide.with(this).load(it.imgUrl).into(binding.imageView)
@@ -47,9 +48,13 @@ class DogFragment : Fragment() {
         val getButton = view.findViewById<Button>(R.id.getButton)
 
         getButton.setOnClickListener {
-            viewModel.fetchDogs()
+            val breed = binding.textFieldDogsBreed.text.toString()
+            if (breed.isEmpty()) {
+                viewModel.fetchDogs()
+            } else {
+                viewModel.fetchDogsByBreed(breed = breed)
+            }
         }
-
     }
 
     private fun showToast(text: String) {
