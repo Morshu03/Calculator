@@ -1,4 +1,4 @@
-package com.example.calculator.presentation.second
+package com.example.calculator.presentation.dog
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,35 +11,23 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.calculator.R
-import com.example.calculator.data.api.DogService
-import com.example.calculator.databinding.FragmentSecondBinding
-import com.example.calculator.presentation.calculator.model.DogUiState
+import com.example.calculator.databinding.FragmentDogBinding
+import com.example.calculator.presentation.dog.model.DogUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DogFragment : Fragment() {
 
     val viewModel: DogViewModel by viewModels()
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentDogBinding? = null
     private val binding get() = _binding!!
 
-    @SuppressLint("FragmentLiveDataObserve")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-
-        viewModel.dogsUiStateLiveData.observe(this) {
-            when (it) {
-                is DogUiState.Error -> {
-                    showToast(it.massage)
-                }
-                is DogUiState.Success -> {
-                    Glide.with(this).load(it.imgUrl).into(binding.imageView)
-                }
-            }
-        }
+        _binding = FragmentDogBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,6 +41,17 @@ class DogFragment : Fragment() {
                 viewModel.fetchDogs()
             } else {
                 viewModel.fetchDogsByBreed(breed = breed)
+            }
+        }
+
+        viewModel.dogsUiStateLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is DogUiState.Error -> {
+                    showToast(it.message)
+                }
+                is DogUiState.Success -> {
+                    Glide.with(this).load(it.imgUrl).into(binding.imageView)
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.calculator.databinding.FragmentCalculatorBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.calculator.presentation.calculator.model.UiState
+import com.example.calculator.presentation.calculator.model.CalculatorUiState
 
 @AndroidEntryPoint
 class CalculatorFragment : Fragment() {
@@ -29,16 +29,16 @@ class CalculatorFragment : Fragment() {
 
         viewModel.uiStateLiveData.observe(this) {
             when (it) {
-                UiState.Default -> {
+                CalculatorUiState.Default -> {
                     binding.xOne.visibility = View.GONE
                     binding.xTwo.visibility = View.GONE
                 }
-                UiState.Error -> {
+                CalculatorUiState.Error -> {
                     binding.xOne.visibility = View.GONE
                     binding.xTwo.visibility = View.GONE
                     showToast("Дискриминант равен 0")
                 }
-                is UiState.Success -> {
+                is CalculatorUiState.Success -> {
                     binding.xOne.visibility = View.VISIBLE
                     binding.xTwo.visibility = View.VISIBLE
                     binding.xOne.text = it.x1.toString()

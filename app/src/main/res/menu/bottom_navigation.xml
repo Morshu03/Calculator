@@ -5,7 +5,10 @@
     <item android:title="@string/calculator"
         android:id="@+id/calculatorFragment"
         android:icon="@drawable/baseline_home_24"/>
-    <item android:title="@string/second_fragment"
-        android:id="@+id/secondFragment"
+    <item android:title="@string/dog_fragment"
+        android:id="@+id/dogFragment"
         android:icon="@drawable/baseline_sports_bar_24"/>
+    <item android:title="@string/breed_fragment"
+        android:id="@+id/breedsFragment"
+        android:icon="@drawable/baseline_search_24"/>
 </menu>

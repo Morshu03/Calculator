@@ -11,9 +11,13 @@
         android:label="fragment_calculator"
         tools:layout="@layout/fragment_calculator" />
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.calculator.presentation.second.DogFragment"
+        android:id="@+id/dogFragment"
+        android:name="com.example.calculator.presentation.dog.DogFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
-    </fragment>
+        tools:layout="@layout/fragment_dog" />
+    <fragment
+        android:id="@+id/breedsFragment"
+        android:name="com.example.calculator.presentation.breeds.BreedsFragment"
+        android:label="fragment_breeds"
+        tools:layout="@layout/fragment_breeds" />
 </navigation>

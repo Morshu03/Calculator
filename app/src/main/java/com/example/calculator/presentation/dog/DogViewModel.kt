@@ -1,10 +1,10 @@
-package com.example.calculator.presentation.second
+package com.example.calculator.presentation.dog
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.calculator.data.repository.DogRepository
-import com.example.calculator.presentation.calculator.model.DogUiState
+import com.example.calculator.presentation.dog.model.DogUiState
 import com.example.calculator.util.RequestResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +15,6 @@ import javax.inject.Inject
 class DogViewModel @Inject constructor(private val repository: DogRepository) : ViewModel() {
 
     val dogsUiStateLiveData: MutableLiveData<DogUiState> = MutableLiveData()
-
 
     fun fetchDogs() {
         viewModelScope.launch() {
@@ -30,7 +29,7 @@ class DogViewModel @Inject constructor(private val repository: DogRepository) : 
                 is RequestResult.Error -> {
                     dogsUiStateLiveData.postValue(
                         DogUiState.Error(
-                            massage = response.message ?: ""
+                            message = response.message ?: ""
                         )
                     )
                 }
@@ -51,7 +50,7 @@ class DogViewModel @Inject constructor(private val repository: DogRepository) : 
                 is RequestResult.Error -> {
                     dogsUiStateLiveData.postValue(
                         DogUiState.Error(
-                            massage = response.message ?: ""
+                            message = response.message ?: ""
                         )
                     )
                 }
