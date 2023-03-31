@@ -6,9 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calculator.R
+import com.example.calculator.presentation.breeds.RecyclerViewInterface
 
-class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.MyViewHolder>() {
+
+
+class BreedsAdapter(val recyclerViewInterface: RecyclerViewInterface) : RecyclerView.Adapter<BreedsAdapter.MyViewHolder>() {
     private var breedList: Set<String> = setOf()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -16,12 +20,15 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.MyViewHolder>() {
         return MyViewHolder(view)
     }
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val breedTextView: TextView = itemView.findViewById(R.id.breedTextView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.breedTextView.text = breedList.toList()[position]
+        holder.itemView.setOnClickListener {
+            recyclerViewInterface.onItemClick(breedList.toList()[position])
+        }
     }
 
     override fun getItemCount(): Int = breedList.size

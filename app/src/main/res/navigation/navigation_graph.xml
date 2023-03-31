@@ -19,5 +19,21 @@
         android:id="@+id/breedsFragment"
         android:name="com.example.calculator.presentation.breeds.BreedsFragment"
         android:label="fragment_breeds"
-        tools:layout="@layout/fragment_breeds" />
+        tools:layout="@layout/fragment_breeds" >
+        <action
+            android:id="@+id/action_breedsFragment_to_breedDetailFragment2"
+            app:destination="@id/breedDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breedDetailFragment"
+        android:name="com.example.calculator.presentation.breed.BreedDetailFragment"
+        android:label="fragment_breed_detail"
+        tools:layout="@layout/fragment_breed_detail" >
+        <argument
+            android:name="breedsArguments"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_breedDetailFragment_to_breedsFragment"
+            app:destination="@id/breedsFragment" />
+    </fragment>
 </navigation>
