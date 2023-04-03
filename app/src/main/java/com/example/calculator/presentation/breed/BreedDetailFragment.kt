@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.bumptech.glide.Glide
 import com.example.calculator.R
 import com.example.calculator.databinding.FragmentBreedDetailBinding
@@ -31,8 +35,8 @@ class BreedDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         val breedArg: String = requireArguments().getString("breedsArguments").toString()
-        binding.breedTextViewNavArgs.text = breedArg
         viewModel.fetchDogsByBreed(breed = breedArg)
         viewModel.breedDetailUiStateLiveData.observe(viewLifecycleOwner) {
             when (it) {
@@ -43,6 +47,9 @@ class BreedDetailFragment : Fragment() {
                     Glide.with(this).load(it.imgUrl).into(binding.breedImageView)
                 }
             }
+        }
+        binding.backArrowButton.setOnClickListener {
+            findNavController().navigate(R.id.action_breedDetailFragment_to_breedsFragment)
         }
     }
     private fun showToast(text: String) {

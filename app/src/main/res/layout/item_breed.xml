@@ -16,7 +16,7 @@
         android:padding="@dimen/default_android_padding"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:text="@string/label"
+        android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

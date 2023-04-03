@@ -12,8 +12,8 @@
     <string name="discriminant">D=%1$s</string>
     <string name="calculator">Calculator</string>
     <string name="dog_fragment">Dog Fragment</string>
-    <string name="second_fragment_text">THIS IS SECOND FRAGMENT</string>
-    <string name="label">Breeds</string>
+    <string name="name">Breeds</string>
     <string name="request">Запрос</string>
     <string name="breed_fragment">breed fragment</string>
+    <string name="label">activity_name</string>
 </resources>

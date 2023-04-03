@@ -1,13 +1,16 @@
 package com.example.calculator.data.repository
 
+import android.widget.Toast
 import com.example.calculator.data.api.DogService
 import com.example.calculator.data.entity.BreedsResponse
 import com.example.calculator.data.entity.RandomDogResponse
 import com.example.calculator.util.RequestResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 class DogRepository @Inject constructor(private val dogService: DogService) {
@@ -37,7 +40,9 @@ class DogRepository @Inject constructor(private val dogService: DogService) {
                         return@withContext RequestResult.Success(it)
                     }
                 }
-                return@withContext RequestResult.Error(breedsResult.message())
+                val jObjError = JSONObject(breedsResult.errorBody()?.string().toString())
+                val message = jObjError.getString("message")
+                return@withContext RequestResult.Error(message)
             } catch (e: java.lang.Exception) {
                 return@withContext RequestResult.Error(e.message)
             }
