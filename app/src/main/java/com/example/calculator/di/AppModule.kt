@@ -1,11 +1,16 @@
 package com.example.calculator.di
 
-import com.example.calculator.data.api.DogService
+import android.content.Context
+import androidx.room.Room
+import com.example.calculator.data.db.AppDatabase
+import com.example.calculator.data.db.BreedsDao
+import com.example.calculator.data.entity.api.DogService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -49,4 +54,19 @@ object AppModule {
     fun provideHumorService(retrofit: Retrofit): DogService =
         retrofit.create(DogService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            AppDatabase::class.java,
+            "BreedsDB"
+        ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideBreedsDao(appDatabase: AppDatabase): BreedsDao {
+        return appDatabase.breedsDao()
+    }
 }

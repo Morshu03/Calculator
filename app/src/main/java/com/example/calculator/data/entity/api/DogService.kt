@@ -1,4 +1,4 @@
-package com.example.calculator.data.api
+package com.example.calculator.data.entity.api
 
 import com.example.calculator.data.entity.BreedsResponse
 import com.example.calculator.data.entity.RandomDogResponse

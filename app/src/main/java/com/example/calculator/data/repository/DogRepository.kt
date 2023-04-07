@@ -1,9 +1,11 @@
 package com.example.calculator.data.repository
 
 import android.widget.Toast
-import com.example.calculator.data.api.DogService
+import com.example.calculator.data.db.BreedsDao
+import com.example.calculator.data.entity.api.DogService
 import com.example.calculator.data.entity.BreedsResponse
 import com.example.calculator.data.entity.RandomDogResponse
+import com.example.calculator.data.entity.channel.Breed
 import com.example.calculator.util.RequestResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -13,11 +15,17 @@ import javax.inject.Singleton
 
 
 @Singleton
-class DogRepository @Inject constructor(private val dogService: DogService) {
+class DogRepository @Inject constructor(
+    private val dogService: DogService,
+    private val breedsDao: BreedsDao
+) {
 
     suspend fun getRandomDog(): RequestResult<RandomDogResponse?> {
         return withContext(Dispatchers.IO) {
             try {
+                val breedsList = breedsDao.getBreeds()
+                val set = breedsList.map { it }.toSet()
+
                 val result = dogService.getRandomDog()
                 if (result.isSuccessful) {
                     result.body()?.let {
@@ -49,18 +57,26 @@ class DogRepository @Inject constructor(private val dogService: DogService) {
         }
     }
 
-    suspend fun getSetOfBreeds(): RequestResult<BreedsResponse?> {
+    suspend fun getSetOfBreeds(): RequestResult<Set<String>?> {
         return withContext(Dispatchers.IO) {
-            try {
-                val breedsResult = dogService.getSetOfBreeds()
-                if (breedsResult.isSuccessful) {
-                    breedsResult.body().let {
-                        return@withContext RequestResult.Success(it)
+            val breedList = breedsDao.getBreeds()
+            if (breedList.isEmpty()) {
+                try {
+                    val breedsResult = dogService.getSetOfBreeds()
+                    if (breedsResult.isSuccessful) {
+                        breedsResult.body()?.message?.keys.let {
+                            if (it != null) {
+                                breedsDao.insertBreeds(it.map { Breed(name = it) })
+                                return@withContext RequestResult.Success(it)
+                            }
+                        }
                     }
+                    return@withContext RequestResult.Error(breedsResult.message())
+                } catch (e: java.lang.Exception) {
+                    return@withContext RequestResult.Error(e.message)
                 }
-                return@withContext RequestResult.Error(breedsResult.message())
-            } catch (e: java.lang.Exception) {
-                return@withContext RequestResult.Error(e.message)
+            } else {
+                return@withContext RequestResult.Success(breedList.map { it.name }.toSet())
             }
         }
     }

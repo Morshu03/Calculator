@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BreedsViewModel @Inject constructor(private val repository: DogRepository): ViewModel() {
+class BreedsViewModel @Inject constructor(private val repository: DogRepository) : ViewModel() {
 
     val breedUiStateLiveData: MutableLiveData<BreedsUiState> = MutableLiveData()
 
@@ -23,13 +23,11 @@ class BreedsViewModel @Inject constructor(private val repository: DogRepository)
         viewModelScope.launch {
             when (val response = repository.getSetOfBreeds()) {
                 is RequestResult.Success -> {
-                    breedUiStateLiveData.postValue(
-                        response.data?.message?.let {
-                            BreedsUiState.Success(
-                                breeds = it.keys
-                            )
-                        }
-                    )
+                    response.data?.let {
+                        breedUiStateLiveData.postValue(
+                            BreedsUiState.Success(breeds = it)
+                        )
+                    }
                 }
                 is RequestResult.Error -> {
                     breedUiStateLiveData.postValue(

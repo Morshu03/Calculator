@@ -49,7 +49,7 @@ class BreedDetailFragment : Fragment() {
             }
         }
         binding.backArrowButton.setOnClickListener {
-            findNavController().navigate(R.id.action_breedDetailFragment_to_breedsFragment)
+            requireActivity().onBackPressed()
         }
     }
     private fun showToast(text: String) {
